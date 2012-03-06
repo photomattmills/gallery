@@ -1,13 +1,13 @@
 require 'sinatra'
 require 'haml'
-
-BASE_DIR="/home/matt/public_html/images/"
-layout=File.open('layout.haml','r').read
-dir_list = Dir.entries BASE_DIR
-
-
-get '/'
-  haml :index, :format => :html5
+root="/users/matt/Desktop"
+get '/' do
+  dir_list = Dir.entries("/home/matt/public_html/images")
+  haml :index, :format => :html5, :locals => {:images => dir_list.map{|thing| return thing unless thing.directory?}}
 end
 
-dir_list = Dir.entries BASE_DIR
+get '/:dir' do
+  dir=params[:dir]
+  images= Dir.entries("#{root}/#{dir}").map{|thing| thing unless thing.match(/^\./) || File.directory?("#{root}/#{dir}/#{thing}")}.compact!
+  haml :layout, :locals => {:images => images, :dir => dir} 
+end
