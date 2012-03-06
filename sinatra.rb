@@ -6,7 +6,7 @@ class Gallery < Sinatra::Base
   get '/' do
     images = Dir.entries(root).map{|thing| thing unless thing.match(/^\./) || File.directory?("#{root}/#{dir}/#{thing}")}.compact!
     images = images.map {|name| name if name.match(/(^.+\.jpg|^.+\.png)/)}.compact.sort
-    haml :index, :format => :html5, :locals => {:images => images, :dir = ""}
+    haml :index, :format => :html5, :locals => {:images => images, :dir => ""}
   end
   
   get '/:dir' do
