@@ -1,0 +1,58 @@
+!!!
+%html
+  %head
+    %title
+      Not Untitled
+    %link{:href=>"/rss/", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml",}
+    %link{:rel=>"stylesheet", :href=>"http://notuntitled.com/stylesheets/blog.css"} 
+    %script{:type=>"text/javascript", :language=>"JavaScript"}
+      ="var images=#{array_string};"
+      var index = 0;
+      function alert_test(){alert("Hello World!");}
+      function next_image(){
+      index=index+1;
+      if(index>images.length-1){index=0;}
+      var image=images[index];
+      var nextimg=images[index+1];
+      ="var url='http://photomattmills.com/images/#{dir}/';"
+      document.getElementById("slide").src=url+image;
+      document.getElementById("next").src=url+nextimg; 
+      }
+      function previous(){
+      index=index-1;
+      if(index<0){index=images.length-1;}
+      var image=images[index];
+      var nextimg=images[index+1];
+      ="var url='http://photomattmills.com/images/#{dir}/';"
+      document.getElementById("slide").src=url+image;
+      document.getElementById("next").src=url+nextimg;
+      }
+  %body
+    #page
+      #content
+        #header
+          #top
+            %a{:href=>"/", :class=>"title"}
+              Not Untitled
+          #bottom
+            My name is Matt Mills. I spit hot photos.
+        #main
+          #content-wrapper
+            #content
+              %br
+              .center
+                %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[0]}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
+                %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
+                %br
+                %span{:style=>"text-align:left;font-size:300%;"}
+                  %a{:onclick=>"previous()", :style=>"cursor: pointer;"}
+                    << Back
+                  &nbsp;&nbsp;||&nbsp;&nbsp;
+                  %a{:onclick=>"next_image()", :style=>"cursor: pointer;"}
+                    Forward >>
+        %br
+        %br
+        #footer
+          #p
+            Copyright &copy; 2010, Matt Mills. All rights reserved.
+            #br
