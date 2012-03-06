@@ -1,3 +1,4 @@
+require 'sinatra/base'
 require 'sinatra'
 require 'haml'
 class Gallery < Sinatra::Base
