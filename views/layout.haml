@@ -6,7 +6,7 @@
     %link{:href=>"/rss/", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml",}
     %link{:rel=>"stylesheet", :href=>"http://notuntitled.com/stylesheets/blog.css"} 
     %script{:type=>"text/javascript", :language=>"JavaScript"}
-      ="var images=['#{images.join(',')'}];"
+      ="var images=[\'#{images.join(',')\'}];"
       var index = 0;
       function alert_test(){alert("Hello World!");}
       function next_image(){
