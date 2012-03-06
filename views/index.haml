@@ -5,28 +5,7 @@
       Not Untitled
     %link{:href=>"/rss/", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml",}
     %link{:rel=>"stylesheet", :href=>"http://notuntitled.com/stylesheets/blog.css"} 
-    %script{:type=>"text/javascript", :language=>"JavaScript"}
-      ="var images=#{array_string};"
-      var index = 0;
-      function next_image(){
-      index=index+1;
-      if(index>images.length-1){index=0;}
-      var image=images[index];
-      var nextimg=images[index+1];
-      ="var url='http://photomattmills.com/images/#{dir}';"
-      document.getElementById("slide").src=url+image;
-      document.getElementById("next").src=url+nextimg; 
-      }
-      function previous(){
-      index=index-1;
-      if(index<0){index=images.length-1;}
-      var image=images[index];
-      var nextimg=images[index+1];
-      ="var url='http://photomattmills.com/images/#{dir}';"
-      document.getElementById("slide").src=url+image;
-      document.getElementById("next").src=url+nextimg;
-      }
-  %body
+
     #page
       #content
         #header
