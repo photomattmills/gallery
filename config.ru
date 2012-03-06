@@ -1,6 +1,6 @@
 require "rubygems"
 require "sinatra"
 
-require './sinatra.rb'
+require 'sinatra.rb'
 
 run Gallery
