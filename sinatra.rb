@@ -4,7 +4,7 @@ require 'haml'
 class Gallery < Sinatra::Base
   root="/home/matt/public_html/images"
   get '/' do
-    images = Dir.entries(root).map{|thing| thing unless thing.match(/^\./) || File.directory?("#{root}/#{dir}/#{thing}")}.compact!
+    images = Dir.entries(root).map{|thing| thing unless thing.match(/^\./) || File.directory?("#{root}/#{thing}")}.compact!
     images = images.map {|name| name if name.match(/(^.+\.jpg|^.+\.png)/)}.compact.sort
     haml :index, :format => :html5, :locals => {:images => images, :dir => ""}
   end
