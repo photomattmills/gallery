@@ -11,6 +11,7 @@
       function alert_test(){alert("Hello World!");}
       function next_image(){
       index=index+1;
+      if(index>images.length-1){index=0;}
       var image=images[index];
       var nextimg=images[index+1];
       ="var url='http://photomattmills.com/images/#{dir}/';"
@@ -19,6 +20,7 @@
       }
       function previous(){
       index=index-1;
+      if(index<0){index=images.length-1;}
       var image=images[index];
       var nextimg=images[index+1];
       ="var url='http://photomattmills.com/images/#{dir}/';"
@@ -37,14 +39,16 @@
         #main
           #content-wrapper
             #content
-              %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[0]}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
-              %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
-              %a{:onclick=>"previous()", :style=>"cursor: pointer;"}
-                Back
-              %a{:onclick=>"next_image()", :style=>"cursor: pointer;"}
-                Forward
-              %a{:onclick=>"alert_test()", :style=>"cursor: pointer;"}
-                Alert
+              %br
+              .center
+                %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[0]}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
+                %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
+                %span{:style=>"text-align:left;font-size:300%;"}
+                  %a{:onclick=>"previous()", :style=>"cursor: pointer;"}
+                    << Back
+                  &nbsp;&nbsp;||&nbsp;&nbsp;
+                  %a{:onclick=>"next_image()", :style=>"cursor: pointer;"}
+                    Forward >>
     #footer
       #p
         Copyright &copy; 2010, Matt Mills. All rights reserved.
