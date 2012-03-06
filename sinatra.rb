@@ -12,6 +12,6 @@ class Gallery < Sinatra::Base
     dir=params[:dir]
     images= Dir.entries("#{root}/#{dir}").map{|thing| thing unless thing.match(/^\./) || File.directory?("#{root}/#{dir}/#{thing}")}.compact!
     array_string="['#{images.join('\',\'')}']"
-    haml :layout, :locals => {:images => images, :dir => dir} 
+    haml :layout, :locals => {:images => images, :dir => dir, :array_string => array_string} 
   end
 end
