@@ -13,13 +13,11 @@ class Gallery < Sinatra::Base
   end
   
   get '/:dir/?:image?' do
-    path = "#{root}/#{params[:dir]}"
-    
-    
+    img_path = "#{root}/#{params[:dir]}"
       
-    check_thumbnails path
+    check_thumbnails img_path
     
-    images = get_images(path)
+    images = get_images(img_path)
     
     thumbnails = get_images("#{path}/thumbnails")
     
@@ -39,10 +37,10 @@ class Gallery < Sinatra::Base
    return Dir["*.jpg", "*.png"]
   end
   
-  def check_thumbnails(path)
+  def check_thumbnails(img_path)
     #check for thumbnails and make them if they don't exist; morgrify is a part of imagemagick; 
     # see http://www.imagemagick.org/Usage/thumbnails/ for details etc
-    unless File.directory? "#{path}/thumbnails"
+    unless File.directory? "#{img_path}/thumbnails"
       `mkdir #{path}/thumbnails && cd #{path} && mogrify -format png -path thumbnails -auto-orient -thumbnail 100x100 '*.jpg'`
     end
   end
