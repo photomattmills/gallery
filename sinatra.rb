@@ -20,8 +20,8 @@ class Gallery < Sinatra::Base
     
     thumbnails = get_images("#{img_path}/thumbnails")
     
-    if params[:image]
-      image_index = images.index(params[:image])
+    if image
+      image_index = images.index(image)
     else
       image_index = 0
     end
@@ -31,7 +31,7 @@ class Gallery < Sinatra::Base
     locals = {
       :images => images, 
       :image_index => image_index, 
-      :image => params[:image], 
+      :image => image, 
       :dir => params[:dir], 
       :array_string => array_string, 
       :thumbnails => thumbnails
