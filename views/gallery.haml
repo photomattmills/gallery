@@ -8,15 +8,7 @@
     %script{:type=>"text/javascript", :language=>"JavaScript"}
       ="var images=#{array_string};"
       ="var url='http://photomattmills.com/images/#{dir}/';"
-      var index = 0;
-      function alert_test(){alert("Hello World!");}
-      function initial_image(){
-      ="index=#{image_index}"
-      var image=images[index];
-      var nextimg=images[index+1];
-      document.getElementById("slide").src=url+image;
-      document.getElementById("next").src=url+nextimg;
-      }
+      ="var index = #{image_index};"
       function next_image(){
       index=index+1;
       if(index>images.length-1){index=0;}
@@ -33,7 +25,7 @@
       document.getElementById("slide").src=url+image;
       document.getElementById("next").src=url+nextimg;
       }
-  %body{:onload => "initial_image()"}
+  %body
     #page
       #content
         #header
@@ -47,8 +39,8 @@
             #content
               %br
               .center
-                %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[0]}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
-                %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
+                %img{:src=>"http://photomattmills.com/images/#{dir}/#{image}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
+                %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[image_index+1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
                 %br
                 %span{:style=>"text-align:left;font-size:300%;"}
                   %a{:onclick=>"previous()", :style=>"cursor: pointer;"}
