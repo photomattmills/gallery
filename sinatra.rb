@@ -22,7 +22,7 @@ class Gallery < Sinatra::Base
     thumbnails = get_images("#{img_path}/thumbnails")
     
     if params[:image]
-      image_index = params[:image]
+      image_index = images.index(params[:image])
     else
       image_index = 0
     end
