@@ -7,14 +7,13 @@ class Gallery < Sinatra::Base
   root="/home/matt/public_html/images"
   
   get '/' do
-    images = Dir.entries(root).map{|thing| thing unless thing.match(/^\./) || File.directory?("#{root}/#{thing}")}.compact! rescue []
-    images = images.map {|name| name if name.match(/(^.+\.jpg|^.+\.png)/)}.compact.sort
+    images = []
     haml :index, :locals => {:images => images, :dir => "", :array_string => ""}
   end
   
-  get '/:dir/?:image' do
+  get '/:dir/?*' do
     img_path = "#{root}/#{params[:dir]}"
-    
+    image = params[:splat][0]
     check_thumbnails img_path
     
     images = get_images img_path
