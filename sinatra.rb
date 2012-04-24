@@ -14,6 +14,8 @@ class Gallery < Sinatra::Base
   
   get '/:dir/?:image?' do
     path = "#{root}/#{params[:dir]}"
+    
+    
       
     check_thumbnails path
     
@@ -29,7 +31,7 @@ class Gallery < Sinatra::Base
     
     array_string="['#{images.join('\',\'')}']"
     
-    haml :gallery, :locals => {:images => images, :image_index => image_index, :dir => dir, :array_string => array_string} 
+    haml :gallery, :locals => {:images => images, :image_index => image_index, :dir => params[:dir], :array_string => array_string} 
   end
 
   def get_images(path)
