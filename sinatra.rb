@@ -22,8 +22,10 @@ class Gallery < Sinatra::Base
     
     if params[:image]
       image_index = images.index(params[:image])
+      image = params[:image]
     else
       image_index = 0
+      image = images.first
     end
     
     array_string="['#{images.join('\',\'')}']"
@@ -31,7 +33,7 @@ class Gallery < Sinatra::Base
     locals = {
       :images => images, 
       :image_index => image_index, 
-      :image => params[:image], 
+      :image => image, 
       :dir => params[:dir], 
       :array_string => array_string, 
       :thumbnails => thumbnails
