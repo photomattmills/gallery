@@ -12,12 +12,12 @@ class Gallery < Sinatra::Base
     haml :index, :locals => {:images => images, :dir => "", :array_string => ""}
   end
   
-  get '/:dir/?:image?' do
+  get '/:dir/:image?' do
     img_path = "#{root}/#{params[:dir]}"
-      
+    
     check_thumbnails img_path
     
-    images = get_images(img_path)
+    images = get_images img_path
     
     thumbnails = get_images("#{img_path}/thumbnails")
     
