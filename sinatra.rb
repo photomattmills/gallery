@@ -28,7 +28,7 @@ class Gallery < Sinatra::Base
     end
     
     array_string="['#{images.join('\',\'')}']"
-    
+    Dir.chdir "/home/matt/gallery"
     haml :gallery, :locals => {:images => images, :image_index => image_index, :dir => params[:dir], :array_string => array_string} 
   end
 
