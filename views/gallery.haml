@@ -50,9 +50,9 @@
                     Forward >>
             #thumbnails
             -thumbnails.each do |thumb|
-              #thumb{:style => "float: left; width: 100px; height: 100px; margin: 0 auto;"}
+              #thumb{:style => "float: left; width: 100px; height: 100px; margin: 10px 10px 10px 10px; text-align:center;"}
                 %a{:href=>"http://galleries.notuntitled.com/images/#{dir}/#{thumb.sub(".png",".jpg")}"}
-                  %img{:src=>"http://photomattmills.com/images/#{dir}/thumbnails/#{thumb}",}
+                  %img{:src=>"http://photomattmills.com/images/#{dir}/thumbnails/#{thumb}", :style=>"border=>none;  "}
         %br
         %br
         #footer
