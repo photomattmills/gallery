@@ -14,6 +14,7 @@
       if(index>images.length-1){index=0;}
       var image=images[index];
       var nextimg=images[index+1];
+      ="window.url='http://galleries.notuntitled.com/#{dir}/'+image"
       document.getElementById("slide").src=url+image;
       document.getElementById("next").src=url+nextimg; 
       }
@@ -22,6 +23,7 @@
       if(index<0){index=images.length-1;}
       var image=images[index];
       var nextimg=images[index+1];
+      ="window.url='http://galleries.notuntitled.com/#{dir}/'+image"
       document.getElementById("slide").src=url+image;
       document.getElementById("next").src=url+nextimg;
       }
