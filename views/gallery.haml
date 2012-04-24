@@ -49,10 +49,11 @@
                   %a{:onclick=>"next_image()", :style=>"cursor: pointer;"}
                     Forward >>
                 %br
-                -thumbnails.each do |thumb|
-                  #thumb{:style => "float: left; width: 100px; height: 100px; margin: 10px 10px 10px 10px; text-align:center;"}
-                    %a{:href=>"http://galleries.notuntitled.com/#{dir}/#{thumb.sub(".png",".jpg")}"}
-                      %img{:src=>"http://photomattmills.com/images/#{dir}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
+                #thumbnails{:style => "margin: 0 auto;"}
+                  -thumbnails.each do |thumb|
+                    #thumb{:style => "float: left; width: 100px; height: 100px; margin: 10px 10px 10px 10px; text-align:center;"}
+                      %a{:href=>"http://galleries.notuntitled.com/#{dir}/#{thumb.sub(".png",".jpg")}"}
+                        %img{:src=>"http://photomattmills.com/images/#{dir}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
         %br
         %br
         #footer{:style=>"width: 968px"}
