@@ -51,8 +51,8 @@
             #thumbnails
             -thumbnails.each do |thumb|
               #thumb{:style => "display: inline; width: 100px; height: 100px;"}
-                %a{:href=>"http://photomattmills.com/images/#{dir}/#{thumb}"}
-                  %img{:src=>"http://photomattmills.com/images/#{dir}/#{thumb}",}
+                %a{:href=>"http://photomattmills.com/images/#{dir}/#{thumb.sub(".png",".jpg")}"}
+                  %img{:src=>"http://photomattmills.com/images/#{dir}/thumbnails/#{thumb}",}
         %br
         %br
         #footer
