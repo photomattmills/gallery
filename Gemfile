@@ -1,5 +1,5 @@
 source :rubygems
 
 gem 'haml'
-gem 'sinatra'
+gem 'sinatra', :git =>  "git://github.com/mattmills/sinatra.git"
 gem 'thin'

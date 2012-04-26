@@ -39,7 +39,7 @@ class Gallery < Sinatra::Base
       :thumbnails => thumbnails
       }
     
-    Dir.chdir "/home/matt/gallery"
+    #Dir.chdir "/home/matt/gallery"
     haml :gallery, :locals => locals
   end
 
