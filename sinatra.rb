@@ -8,7 +8,7 @@ WORKING_FOLDER = Dir.pwd
 class Gallery < Sinatra::Base
   root="/home/matt/public_html/images"
   
-  get '/?*.jpg?' do
+  get '/?*' do
     images = get_images(root)
     thumbnails = get_images("#{root}/thumbnails")
     Dir.chdir root
