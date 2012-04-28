@@ -19,7 +19,7 @@ class Gallery < Sinatra::Base
       :images => images, 
       :image_index => 0, 
       :image => images.first, 
-      :dir => "" 
+      :dir => "", 
       :array_string => array_string, 
       :thumbnails => thumbnails,
       :folders => folders
