@@ -54,10 +54,10 @@
                   #thumb{:style => "float: left; width: 100px; height: 100px; margin: auto; text-align:center;"}
                     %a{:href=>"http://galleries.notuntitled.com/#{dir}/#{thumb.sub(".png",".jpg")}"}
                       %img{:src=>"http://photomattmills.com/images/#{dir}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
-              #clear
+              #clear{:style => "width: 968px"}
               #folders
                 -folders.each do |folder|
-                  %a{:href => "http://galleries.notuntitled.com/#folder"}="#{folder}"
+                  %a{:href => "http://galleries.notuntitled.com/#{folder}"}="#{folder}"
                   %br    
         %br
         %br

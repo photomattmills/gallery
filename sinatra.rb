@@ -8,7 +8,7 @@ WORKING_FOLDER = Dir.pwd
 class Gallery < Sinatra::Base
   root="/home/matt/public_html/images"
   
-  get '/' do
+  get '/?*.jpg' do
     images = get_images(root)
     thumbnails = get_images("#{root}/thumbnails")
     Dir.chdir root
@@ -18,7 +18,7 @@ class Gallery < Sinatra::Base
     locals = {
       :images => images, 
       :image_index => 0, 
-      :image => images.first, 
+      :image => params[:splat].first || images.first, 
       :dir => "", 
       :array_string => array_string, 
       :thumbnails => thumbnails,
