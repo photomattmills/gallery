@@ -26,7 +26,7 @@ class Gallery < Sinatra::Base
     locals = {
       :images => images, 
       :image_index => image_index, 
-      :image => image
+      :image => image,
       :dir => "", 
       :array_string => array_string, 
       :thumbnails => thumbnails,
