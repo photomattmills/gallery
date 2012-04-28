@@ -16,7 +16,7 @@ class Gallery < Sinatra::Base
     array_string="['#{images.join('\',\'')}']"
     
     if params[:splat].first
-      image_index = images.index(params[:splat].first)
+      image_index = 0 #images.index(params[:splat].first)
       image = params[:splat].first
     else
       image_index = 0 
