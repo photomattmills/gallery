@@ -3,13 +3,34 @@
   %head
     %title
       Not Untitled
+    %link{:href=>"/rss/", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml",}
     %link{:rel=>"stylesheet", :href=>"http://notuntitled.com/stylesheets/blog.css"} 
-
+    %script{:type=>"text/javascript", :language=>"JavaScript"}
+      ="var images=#{array_string};"
+      ="var url='http://photomattmills.com/images/#{dir}/';"
+      ="var index = #{image_index};"
+      function next_image(){
+      index=index+1;
+      if(index>images.length-1){index=0;}
+      var image=images[index];
+      var nextimg=images[index+1];
+      document.getElementById("slide").src=url+image;
+      document.getElementById("next").src=url+nextimg; 
+      }
+      function previous(){
+      index=index-1;
+      if(index<0){index=images.length-1;}
+      var image=images[index];
+      var nextimg=images[index+1];
+      document.getElementById("slide").src=url+image;
+      document.getElementById("next").src=url+nextimg;
+      }
+  %body
     #page
       #content
         #header
           #top
-            %a{:href=>"/", :class=>"title"}
+            %a{:href=>"http://notuntitled.com", :class=>"title"}
               Not Untitled
           #bottom
             My name is Matt Mills. I spit hot photos.
@@ -18,11 +39,30 @@
             #content
               %br
               .center
-                %h3="Nothing to see here."
-                %p="No seriously. Go away."
+                %img{:src=>"http://photomattmills.com/images/#{dir}/#{image}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
+                %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[image_index+1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
+                %br
+                %span{:style=>"text-align:left;font-size:300%;"}
+                  %a{:onclick=>"previous()", :style=>"cursor: pointer;"}
+                    << Back
+                  &nbsp;&nbsp;||&nbsp;&nbsp;
+                  %a{:onclick=>"next_image()", :style=>"cursor: pointer;"}
+                    Forward >>
+                %br
+              #thumbnails{:style => "margin: 0 auto;"}
+                -thumbnails.each do |thumb|
+                  #thumb{:style => "float: left; width: 100px; height: 100px; margin: auto; text-align:center;"}
+                    %a{:href=>"http://galleries.notuntitled.com/#{dir}/#{thumb.sub(".png",".jpg")}"}
+                      %img{:src=>"http://photomattmills.com/images/#{dir}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
+              #clear
+              #folders
+                -folders.each do |folder|
+                  %a{:href => "http://galleries.notuntitled.com/#folder"}="#{folder}"
+                  %br    
         %br
         %br
-        #footer
+          
+        #footer{:style=>"width: 968px"}
           #p
             Copyright &copy; 2010, Matt Mills. All rights reserved.
             #br

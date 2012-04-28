@@ -9,8 +9,23 @@ class Gallery < Sinatra::Base
   root="/home/matt/public_html/images"
   
   get '/' do
-    images = []
-    haml :index, :views => "#{WORKING_FOLDER}/views"
+    images = get_images(root)
+    thumbnails = get_images("#{root}/thumbnails")
+    Dir.chdir root
+    folders = Dir["*"].map {|file| file if File.directory? file}.compact
+    array_string="['#{images.join('\',\'')}']"
+    
+    locals = {
+      :images => images, 
+      :image_index => 0, 
+      :image => images.first, 
+      :dir => "" 
+      :array_string => array_string, 
+      :thumbnails => thumbnails,
+      :folders => folders
+      }
+      
+    haml :index, :views => "#{WORKING_FOLDER}/views", :locals => locals
   end
   
   get '/:dir/?:image?' do
