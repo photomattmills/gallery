@@ -1,14 +1,16 @@
-# this is 
-
 require 'sinatra/base'
 require 'sinatra'
 require 'haml'
+#This is a workaround for a sinatra/unicorn bug. setting the views with an absolute path fixes it.
+WORKING_FOLDER = Dir.pwd
+
+
 class Gallery < Sinatra::Base
   root="/home/matt/public_html/images"
   
   get '/' do
     images = []
-    haml :index, :locals => {:images => images, :dir => "", :array_string => ""}
+    haml :index, :views => "#{WORKING_FOLDER}/views"
   end
   
   get '/:dir/?:image?' do
@@ -39,8 +41,7 @@ class Gallery < Sinatra::Base
       :thumbnails => thumbnails
       }
     
-    #Dir.chdir "/home/matt/gallery"
-    haml :gallery, :locals => locals
+    haml :gallery, :views => "#{WORKING_FOLDER}/views", :locals => locals
   end
 
   def get_images(path)
@@ -50,7 +51,7 @@ class Gallery < Sinatra::Base
   
   def check_thumbnails(img_path)
     #check for thumbnails and make them if they don't exist; morgrify is a part of imagemagick; 
-    # see http://www.imagemagick.org/Usage/thumbnails/ for details etc
+    #see http://www.imagemagick.org/Usage/thumbnails/ for details etc
     unless File.directory? "#{img_path}/thumbnails"
       `mkdir #{img_path}/thumbnails && cd #{img_path} && mogrify -format png -path thumbnails -auto-orient -thumbnail 100x100 '*.jpg'`
     end
