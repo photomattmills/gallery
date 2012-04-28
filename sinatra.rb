@@ -8,16 +8,16 @@ WORKING_FOLDER = Dir.pwd
 class Gallery < Sinatra::Base
   root="/home/matt/public_html/images"
   
-  get '/?*?.jpg?' do
+  get %r{/?(\w+\.jpg)?} do
     images = get_images(root)
     thumbnails = get_images("#{root}/thumbnails")
     Dir.chdir root
     folders = Dir["*"].map {|file| file if File.directory? file}.compact
     array_string="['#{images.join('\',\'')}']"
     
-    unless params[:splat].first.empty?
-      image_index = 0 #images.index(params[:splat].first)
-      image = params[:splat].first
+    unless params[:captures].first.empty?
+      image_index = images.index(params[:captures].first)
+      image = params[:captures].first
     else
       image_index = 0 
       image = images.first
