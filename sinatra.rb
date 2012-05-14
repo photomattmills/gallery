@@ -15,13 +15,13 @@ class Gallery < Sinatra::Base
     folders = Dir["*"].map {|file| file if File.directory? file}.compact
     array_string="['#{images.join('\',\'')}']"
     
-    unless params[:captures].first.empty?
-      image_index = images.index(params[:captures].first)
-      image = params[:captures].first
-    else
+    #unless params[:captures].first.empty?
+    #  image_index = images.index(params[:captures].first)
+    #  image = params[:captures].first
+    #else
       image_index = 0 
       image = images.first
-    end
+    #end
     
     locals = {
       :images => images, 
