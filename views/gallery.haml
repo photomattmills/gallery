@@ -33,7 +33,18 @@
             %a{:href=>"http://notuntitled.com", :class=>"title"}
               Not Untitled
           #bottom
-            My name is Matt Mills. I spit hot photos.
+            #bottom
+              #desc
+                My name is Matt Mills. These are my photos. 
+              #{:class=>"buttons"}
+                %a{:href=>"mailto:sunrisetimes@gmail.com", :class=>"button"}
+                  email me
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                %a{:href=>"http://notuntitled.com/rss", :class=>"button"}
+                  RSS
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                %a{:href=>"http://notuntitled.com", :class="button"}
+                  Archive
         #main
           #content-wrapper
             #content
