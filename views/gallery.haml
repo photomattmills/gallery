@@ -36,15 +36,10 @@
           #bottom
             #desc
               My name is Matt Mills. These are my photos. 
-            #buttons{:class=>"buttons"}
-              %a{:href=>"mailto:sunrisetimes@gmail.com", :class=>"button"}
-                email me
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              %a{:href=>"http://notuntitled.com/rss", :class=>"button"}
-                RSS
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              %a{:href=>"http://notuntitled.com", :class=>"button"}
-                Archive
+            :plain
+              <div class="buttons">
+              					<a href="mailto:sunrisetimes@gmail.com" class="button">email me </a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://notuntitled.com/rss" class="button">RSS</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/" class="button">Archive</a>
+              				</div>
         #main
           #content-wrapper
             #content
