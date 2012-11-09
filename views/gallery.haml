@@ -57,7 +57,7 @@
                 %br
               #thumbnails{:style => "margin: 0 auto;"}
                 -thumbnails.each do |thumb|
-                  #thumb{:style => "float: left; width: 100px; height: 100px; margin: 10px; text-align:center;line-height:100px;"}
+                  #thumb{:style => "float: left; width: 100px; height: 100px; margin: 10px; text-align:center;display:table-cell;vertical-align:middle;"}
                     %a{:href=>"http://galleries.notuntitled.com/#{dir}/#{thumb.sub(".png",".jpg")}"}
                       %img{:src=>"http://photomattmills.com/images/#{dir}/thumbnails/#{thumb}", :style=>"border: 0pt none;display:table-cell;vertical-align:middle;margin:auto;"}
         %br
