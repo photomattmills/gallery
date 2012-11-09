@@ -45,7 +45,8 @@
             #content
               %br
               .center
-                %img{:src=>"http://photomattmills.com/images/#{dir}/#{image}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
+                #thumb{:style => "width: 970px; height: 710px; display:table-cell; vertical-align:middle;"}
+                  %img{:src=>"http://photomattmills.com/images/#{dir}/#{image}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
                 %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[image_index+1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
                 %br
                 %span{:style=>"text-align:left;font-size:300%;"}
