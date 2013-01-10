@@ -1,5 +1,7 @@
-require "rubygems"
-require "sinatra"
+require 'rubygems'
+require 'bundler'
+
+Bundler.require
 
 require './sinatra.rb'
 
