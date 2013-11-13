@@ -69,7 +69,7 @@ class Gallery < Sinatra::Base
 
   def get_images(path)
    Dir.chdir "#{path}"
-   return Dir["*.jpg", "*.png"]
+   return Dir["*.jpg", "*.png"].sort!
   end
   
   def check_thumbnails(img_path)
