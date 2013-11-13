@@ -76,7 +76,7 @@ class Gallery < Sinatra::Base
     #check for thumbnails and make them if they don't exist; morgrify is a part of imagemagick; 
     #see http://www.imagemagick.org/Usage/thumbnails/ for details etc
     unless File.directory? "#{img_path}/thumbnails"
-      #`mkdir #{img_path}/thumbnails && cd #{img_path} && mogrify -format png -path thumbnails -auto-orient -thumbnail 100x100 '*.jpg'`
+      `mkdir #{img_path}/thumbnails && cd #{img_path} && mogrify -format png -path thumbnails -auto-orient -thumbnail 100x100 '*.jpg'`
     end
   end
 end
