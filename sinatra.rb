@@ -43,7 +43,7 @@ class Gallery < Sinatra::Base
     
     images = get_images(img_path)
     
-    thumbnails = get_images("#{img_path}/thumbnails")
+    thumbnails = get_images("#{img_path}/thumbnails") if File.directory? "#{img_path}/thumbnails"
     
     if params[:image]
       image_index = images.index(params[:image])
