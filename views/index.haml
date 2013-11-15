@@ -6,7 +6,7 @@
     %link{:href=>"/rss/", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml",}
     %link{:rel=>"stylesheet", :href=>"http://notuntitled.com/stylesheets/blog.css"} 
     :javascript
-      var images=JSON.parse(#{array});
+      var images=#{array};
       var index = #{image_index};
       function next_image(){
         index=index+1;
@@ -17,8 +17,8 @@
             
         var image=images[index];
         var nextimg=images[index+1];
-        document.getElementById("slide").src=#{url}+image;
-        document.getElementById("next").src=#{url}+nextimg; 
+        document.getElementById("slide").src="#{url}"+image;
+        document.getElementById("next").src="#{url}"+nextimg;
       }
       
       function previous(){
@@ -28,10 +28,9 @@
           }
         var image=images[index];
         var nextimg=images[index+1];
-        document.getElementById("slide").src=url+image;
-        document.getElementById("next").src=url+nextimg;
+        document.getElementById("slide").src="#{url}"+image;
+        document.getElementById("next").src="#{url}"+nextimg;
       }
-      
   %body
     #page
       #content
@@ -42,7 +41,7 @@
           #bottom
             #desc
               My name is Matt Mills. These are my photos.
-            #{:class=>"buttons"}
+            .buttons
               %a{:href=>"mailto:sunrisetimes@gmail.com", :class=>"button"}
                 email me
               &nbsp;&nbsp;&nbsp;&nbsp;
@@ -56,8 +55,8 @@
             #content
               %br
               .center
-                %img{:src=>"http://photomattmills.com/images/#{dir}/#{image}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
-                %img{:src=>"http://photomattmills.com/images/#{dir}/#{images[image_index+1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
+                %img{:src=>"http://photomattmills.com/images/#{path}/#{image}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
+                %img{:src=>"http://photomattmills.com/images/#{path}/#{images[image_index+1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
                 %br
                 %span{:style=>"text-align:left;font-size:300%;"}
                   %a{:onclick=>"previous()", :style=>"cursor: pointer;"}
@@ -68,9 +67,10 @@
                 %br
               #thumbnails{:style => "margin: 0 auto;"}
                 -thumbnails.each do |thumb|
-                  #thumb{:style => "float: left; width: 100px; height: 100px; margin: auto; text-align:center;"}
-                    %a{:href=>"http://galleries.notuntitled.com/#{dir}/#{thumb.sub(".png",".jpg")}"}
-                      %img{:src=>"http://photomattmills.com/images/#{dir}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
+                  #container{:style => "float: left; width: 100px; height: 100px;margin: 10px; text-align:center;"}
+                    #thumb{:style => "float: left; width: 100px; height: 100px; margin: auto; text-align:center;"}
+                      %a{:href=>"http://galleries.notuntitled.com/#{path}/#{thumb.sub(".png",".jpg")}"}
+                        %img{:src=>"http://photomattmills.com/images/#{path}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
               #clear{:style => "width: 968px"}
               #folders
                 -if folders

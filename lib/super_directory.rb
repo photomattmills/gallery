@@ -4,20 +4,25 @@ module Better
     attr_accessor :path, :images, :root, :params
 
     def initialize(root, params)
-      @path = params[:path]
+      @path = params[:path] ? (root + "/" + params[:path]) : root
       @root = root
-      @images = images(path)
       @params = params
+      images
     end
 
-    def images(path)
-      Dir.chdir "#{path}"
+    def images
+      @images ||= get_images
+    end
+
+    def get_images(dir_path=nil)
+      real_path = dir_path ? (root + "/" + dir_path) : @path
+      Dir.chdir "#{real_path}"
       Dir["*.jpg", "*.png"].sort!
     end
     
     def thumbnails
       check_thumbnails
-      images "#{path}/thumbnails"
+      get_images "#{params[:path]}/thumbnails"
     end
     
     def to_json
@@ -38,8 +43,8 @@ module Better
       end
     end
     
-    def dirs
-      unless params[:dir]
+    def folders
+      unless params[:path]
         Dir.chdir root
         Dir["*"].map {|file| file if File.directory? file}.compact
       end
