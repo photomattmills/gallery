@@ -3,6 +3,6 @@ require 'bundler'
 
 Bundler.require
 
-require './sinatra.rb'
+require './gallery.rb'
 
 run Gallery

@@ -5,26 +5,33 @@
       Not Untitled
     %link{:href=>"/rss/", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml",}
     %link{:rel=>"stylesheet", :href=>"http://notuntitled.com/stylesheets/blog.css"} 
-    %script{:type=>"text/javascript", :language=>"JavaScript"}
-      ="var images=#{array_string};"
-      ="var url='http://photomattmills.com/images/#{dir}/';"
-      ="var index = #{image_index};"
+    :javascript
+      var images=JSON.parse(#{array});
+      var index = #{image_index};
       function next_image(){
-      index=index+1;
-      if(index>images.length-1){index=0;}
-      var image=images[index];
-      var nextimg=images[index+1];
-      document.getElementById("slide").src=url+image;
-      document.getElementById("next").src=url+nextimg; 
+        index=index+1;
+        
+        if(index>images.length-1){
+          index=0;
+          }
+            
+        var image=images[index];
+        var nextimg=images[index+1];
+        document.getElementById("slide").src=#{url}+image;
+        document.getElementById("next").src=#{url}+nextimg; 
       }
+      
       function previous(){
-      index=index-1;
-      if(index<0){index=images.length-1;}
-      var image=images[index];
-      var nextimg=images[index+1];
-      document.getElementById("slide").src=url+image;
-      document.getElementById("next").src=url+nextimg;
+        index=index-1;
+        if(index<0){ 
+          index=images.length-1; 
+          }
+        var image=images[index];
+        var nextimg=images[index+1];
+        document.getElementById("slide").src=url+image;
+        document.getElementById("next").src=url+nextimg;
       }
+      
   %body
     #page
       #content
@@ -66,13 +73,14 @@
                       %img{:src=>"http://photomattmills.com/images/#{dir}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
               #clear{:style => "width: 968px"}
               #folders
-                -folders.each do |folder|
-                  %a{:href => "http://galleries.notuntitled.com/#{folder}"}="#{folder}"
-                  %br    
+                -if folders
+                  -folders.each do |folder|
+                    %a{:href => "http://galleries.notuntitled.com/#{folder}"}="#{folder}"
+                    %br
         %br
         %br
-          
+           
         #footer{:style=>"width: 968px"}
           #p
-            Copyright &copy; 2010, Matt Mills. All rights reserved.
+            Copyright &copy; 2010-2013, Matt Mills. All rights reserved.
             #br
