@@ -12,7 +12,7 @@ class Gallery < Sinatra::Base
     
     locals = {
       :images => @dir.images,
-      :image => @dir.images.first,
+      :image => params[:image] ? params[:image] || @dir.images.first,
       :image_index => @dir.image_index, 
       :url => "http://photomattmills.com/images/#{params[:path]}/",
       :array => @dir.to_json,
