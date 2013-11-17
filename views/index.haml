@@ -33,7 +33,7 @@
       }
   %body
     #page
-      #content
+      .content
         #header
           #top
             %a{:href=>"http://notuntitled.com", :class=>"title"}
@@ -52,31 +52,30 @@
                 Archive
         #main
           #content-wrapper
-            .content
+            %br
+            .center
+              %img{:src=>"http://photomattmills.com/images/#{path}/#{image}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
+              %img{:src=>"http://photomattmills.com/images/#{path}/#{images[image_index+1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
               %br
-              .center
-                %img{:src=>"http://photomattmills.com/images/#{path}/#{image}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
-                %img{:src=>"http://photomattmills.com/images/#{path}/#{images[image_index+1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
-                %br
-                %span{:style=>"text-align:left;font-size:300%;"}
-                  %a{:onclick=>"previous()", :style=>"cursor: pointer;"}
-                    << Back
-                  &nbsp;&nbsp;||&nbsp;&nbsp;
-                  %a{:onclick=>"next_image()", :style=>"cursor: pointer;"}
-                    Forward >>
-                %br
-              #thumbnails{:style => "margin: 0 auto;"}
-                -thumbnails.each do |thumb|
-                  #container{:style => "float: left; width: 100px; height: 100px;margin: 10px; text-align:center;"}
-                    #thumb{:style => "float: left; width: 100px; height: 100px; margin: auto; text-align:center;"}
-                      %a{:href=>"http://galleries.notuntitled.com/#{path}/#{thumb.sub(".png",".jpg")}"}
-                        %img{:src=>"http://photomattmills.com/images/#{path}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
-              #clear{:style => "width: 968px"}
-              #folders
-                -if folders
-                  -folders.each do |folder|
-                    %a{:href => "http://galleries.notuntitled.com/#{folder}"}="#{folder}"
-                    %br
+              %span{:style=>"text-align:left;font-size:300%;"}
+                %a{:onclick=>"previous()", :style=>"cursor: pointer;"}
+                  << Back
+                &nbsp;&nbsp;||&nbsp;&nbsp;
+                %a{:onclick=>"next_image()", :style=>"cursor: pointer;"}
+                  Forward >>
+              %br
+            #thumbnails{:style => "margin: 0 auto;"}
+              -thumbnails.each do |thumb|
+                #container{:style => "float: left; width: 100px; height: 100px;margin: 10px; text-align:center;"}
+                  #thumb{:style => "float: left; width: 100px; height: 100px; margin: auto; text-align:center;"}
+                    %a{:href=>"http://galleries.notuntitled.com/#{path}/#{thumb.sub(".png",".jpg")}"}
+                      %img{:src=>"http://photomattmills.com/images/#{path}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
+            #clear{:style => "width: 968px"}
+            #folders
+              -if folders
+                -folders.each do |folder|
+                  %a{:href => "http://galleries.notuntitled.com/#{folder}"}="#{folder}"
+                  %br
         %br
         %br
            
