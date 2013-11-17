@@ -19,8 +19,11 @@ class Gallery < Sinatra::Base
       :thumbnails => @dir.thumbnails,
       :folders => @dir.folders,
       :path => params[:path]
-      }
-    
-    haml :index, :views => "#{WORKING_FOLDER}/views", :locals => locals
+      } rescue nil
+    if locals
+      haml :index, :views => "#{WORKING_FOLDER}/views", :locals => locals
+    else
+      "404"
+    end
   end
 end
