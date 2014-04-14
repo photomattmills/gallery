@@ -3,28 +3,27 @@
   %head
     %title
       Not Untitled
-    %link{:href=>"/rss/", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml",}
-    %link{:rel=>"stylesheet", :href=>"http://notuntitled.com/stylesheets/blog.css"} 
+    %link{:rel=>"stylesheet", :href=>"http://notuntitled.com/stylesheets/blog.css"}
     :javascript
-      var images=#{array};
+      var images=#{images.to_json};
       var index = #{image_index};
       function next_image(){
         index=index+1;
-        
+
         if(index>images.length-1){
           index=0;
           }
-            
+
         var image=images[index];
         var nextimg=images[index+1];
         document.getElementById("slide").src="#{url}"+image;
         document.getElementById("next").src="#{url}"+nextimg;
       }
-      
+
       function previous(){
         index=index-1;
-        if(index<0){ 
-          index=images.length-1; 
+        if(index<0){
+          index=images.length-1;
           }
         var image=images[index];
         var nextimg=images[index+1];
@@ -54,8 +53,8 @@
           #content-wrapper
             %br
             .center
-              %img{:src=>"http://photomattmills.com/images/#{path}/#{image}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
-              %img{:src=>"http://photomattmills.com/images/#{path}/#{images[image_index+1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
+              %img{:src=>"#{url}/#{image}", :id=>"slide",  :onclick=>"next_image()", :alt=>"Photos"}
+              %img{:src=>"#{url}/#{images[image_index+1]}", :id=>"next", :style=>"border: 0pt none; width: 0pt; height: 0pt;" }
               %br
               %span{:style=>"text-align:left;font-size:300%;"}
                 %a{:onclick=>"previous()", :style=>"cursor: pointer;"}
@@ -68,8 +67,8 @@
               -thumbnails.each do |thumb|
                 #container{:style => "float: left; width: 100px; height: 100px;margin: 10px; text-align:center;"}
                   #thumb{:style => "float: left; width: 100px; height: 100px; margin: auto; text-align:center;"}
-                    %a{:href=>"http://galleries.notuntitled.com/#{path}/#{thumb.sub(".png",".jpg")}"}
-                      %img{:src=>"http://photomattmills.com/images/#{path}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
+                    %a{:href=>"http://galleries.notuntitled.com/#{current_folder}/#{thumb.sub(".png",".jpg")}"}
+                      %img{:src=>"#{url}/thumbnails/#{thumb}", :style=>"border: 0pt none;"}
             #clear{:style => "width: 968px"}
             #folders
               -if folders
@@ -78,8 +77,8 @@
                   %br
         %br
         %br
-           
+
         #footer{:style=>"width: 968px"}
           #p
-            Copyright &copy; 2010-2013, Matt Mills. All rights reserved.
+            Copyright &copy; 2010-2014, Matt Mills. All rights reserved.
             #br

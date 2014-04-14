@@ -1,34 +1,40 @@
 module Better
   class Directory
     require 'json'
-    attr_accessor :path, :images, :root, :params
+    attr_accessor :path, :root, :params
 
     def initialize(root, params)
       @path = params[:path] ? (root + "/" + params[:path]) : root
       @root = root
       @params = params
-      images
+    end
+
+    def locals
+      {
+        :images => images,
+        :image => params[:image] ? params[:image] : images.first,
+        :image_index => image_index,
+        :url => "http://photomattmills.com/images/#{params[:path]}/",
+        :thumbnails => thumbnails,
+        :folders => folders,
+        :current_folder => params[:path]
+      }
     end
 
     def images
-      @images ||= get_images
+      @images ||= get_images(path)
     end
 
     def get_images(dir_path=nil)
-      real_path = dir_path ? (root + "/" + dir_path) : @path
-      Dir.chdir "#{real_path}"
-      Dir["*.jpg", "*.png"].sort!
+      Dir.chdir "#{dir_path}"
+      @images = Dir["*.jpg", "*.png"].sort!
     end
-    
+
     def thumbnails
       check_thumbnails
-      get_images "#{params[:path]}/thumbnails"
+      get_images "#{path}/thumbnails"
     end
-    
-    def to_json
-      images.to_json
-    end
-    
+
     def image_index
       if params[:image]
         return images.index(params[:image])
@@ -36,13 +42,13 @@ module Better
         return 0
       end
     end
-    
+
     def check_thumbnails
       unless File.directory? "#{path}/thumbnails"
         `mkdir #{path}/thumbnails && cd #{path} && mogrify -format png -path thumbnails -auto-orient -thumbnail 100x100 '*.jpg'`
       end
     end
-    
+
     def folders
       unless params[:path]
         Dir.chdir root

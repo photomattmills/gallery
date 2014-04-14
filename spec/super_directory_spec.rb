@@ -3,46 +3,45 @@ require 'spec_helper'
 describe Better::Directory do
   context "With a root dir, but without a gallery dir" do
     let(:superdir) { Better::Directory.new(File.dirname(__FILE__), {path: nil, image: nil}) }
-    
-    describe "#initialize" do
-      it "sets the path to root" do
-        superdir.path.should == File.dirname(__FILE__)
-      end
-      
-      it "gets all the images" do
-        superdir.images.should == ["0001.jpg"]
-      end
-    end
-      
-    describe "#thumbnails" do
-      it "lists the thumbnails properly" do
-        superdir.thumbnails.should == ["0001.png"]
-      end
-    end
-    
-    describe "#folders" do
-      it "gets all the subdirectories" do
-        superdir.folders.should eq ["flynn-curran-wedding", "thumbnails"]
+
+    describe "#locals" do
+      let(:expected){
+        {
+          :images=>["0001.jpg"],
+          :image=>"0001.jpg",
+          :image_index=>0,
+          :url=>"http://photomattmills.com/images//",
+          :thumbnails=>["0001.png"],
+          :folders=>["flynn-curran-wedding", "thumbnails"],
+          :current_folder => nil
+        }
+      }
+
+      it "gets the right locals" do
+        superdir.locals.should == expected
       end
     end
   end
-  
+
   context "With a root dir and a gallery dir" do
     let(:superdir) { Better::Directory.new(File.dirname(__FILE__), {path: "flynn-curran-wedding", image: nil}) }
-    
-    describe "#initialize" do
-      it "sets the path to path" do
-        superdir.path.should == File.dirname(__FILE__) + "/flynn-curran-wedding"
-      end
-      
-      it "gets all the images" do
-        superdir.images.should == ["0001.jpg", "0002.jpg", "0003.jpg", "0004.jpg", "0005.jpg", "0006.jpg", "0007.jpg", "0008.jpg"]
-      end
-    end
-    
-    describe "#folders" do
-      it "doesn't get subdirectories" do
-        superdir.folders.should be_nil
+
+
+    describe "#locals" do
+      let(:expected){
+        {
+          :images=>["0001.jpg", "0002.jpg", "0003.jpg", "0004.jpg", "0005.jpg", "0006.jpg", "0007.jpg", "0008.jpg"],
+          :image=>"0001.jpg",
+          :image_index=>0,
+          :url=>"http://photomattmills.com/images/flynn-curran-wedding/",
+          :thumbnails=>["0001.png", "0002.png", "0003.png", "0004.png", "0005.png", "0006.png", "0007.png", "0008.png"],
+          :folders=>nil,
+          :current_folder=>"flynn-curran-wedding"
+        }
+      }
+
+      it "gets the right locals" do
+        superdir.locals.should == expected
       end
     end
   end
