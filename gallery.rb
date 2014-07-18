@@ -9,7 +9,7 @@ WORKING_FOLDER = Dir.pwd
 class Gallery < Sinatra::Base
 
   post "/sns" do
-    File.open("/tmp/snsrequest", "w"){ |f| f.write request.body }
+    File.open("/tmp/snsrequest", "w"){ |f| f.write request.body.read }
   end
 
   get '/?:path?/?:image?' do
