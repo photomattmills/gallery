@@ -7,6 +7,11 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
 WORKING_FOLDER = Dir.pwd
 
 class Gallery < Sinatra::Base
+
+  post "/sns" do
+    File.open("/tmp/snsrequest", "w"){ |f| f.write request.inspect }
+  end
+
   get '/?:path?/?:image?' do
     @dir = Better::Directory.new("/home/matt/public_html/images", params )
 
